@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>右边宽度固定，左边自适应</title>
+		<style type="text/css">
+			*,html{
+				margin: 0;
+				padding: 0;
+			}
+			h1{
+				margin: 30px 0;
+			}
+			.useFlex{
+				width: 100%;
+				height: 200px;
+				display: flex;
+			}
+			.flex-left{
+				flex: 1;
+				background: #00FFFF;
+			}
+			.left-right{
+				width: 100px;
+				background: #0099FF;
+			}
+
+			.float-left{
+				background: #F5F5DC;
+				height: 200px;
+			}
+			.float-right{
+				float: right;
+				background: #0099FF;
+				width: 200px;
+				height: 200px;
+			}
+			.useGird{
+				display: grid;
+				grid-template-rows:200px;
+				grid-template-columns:auto 200px;
+			}
+			.grid-left{
+				background: #0099FF;
+			}
+			.grid-right{
+				background: #00FFFF;
+			}
+			.usePosition{
+				position: relative;
+				height: 200px;
+			}
+			.position-left{
+				background: red;
+				width: 100%;
+				position: absolute;
+				top: 0;
+				bottom:0;
+				right: 200px;
+			}
+			.position-right{
+				background: #00FFFF;
+				width: 200px;
+				position: absolute;
+				right: 0;
+				top: 0;
+				bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>flex</h1>
+		<div class="useFlex">
+			<div class="flex-left"></div>
+			<div class="left-right"></div>
+		</div>
+		<h1>float</h1>
+		<div class="useFloat">
+			<div class="float-right"></div>
+			<div class="float-left"></div>
+		</div>
+		<h1>grid</h1>
+		<div class="useGird">
+			<div class="grid-left"></div>
+			<div class="grid-right"></div>
+		</div>
+		<h1>position</h1>
+		<div class="usePosition">
+			<div class="position-left"></div>
+			<div class="position-right"></div>
+		</div>
+	</body>
+</html>
