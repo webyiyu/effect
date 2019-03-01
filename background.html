@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击图片放大效果</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <style type="text/css">
+        body,html{
+            height: 100%;
+        }
+        #demo{
+            width: 360px;
+            height: 360px;
+            position: relative;
+            left: 50%;
+            margin-left: -180px;
+            top: 50%;
+            margin-top: -180px;
+            cursor: pointer;
+            border: 1px dashed #ccc;
+        }
+        img,span{
+            display: inline-block;
+            width: 360px;
+            height: 360px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+        span{
+            background-color: #fff;
+            z-index: 2;
+            opacity: 0.3;
+            filter: alpha(opacity: 30);
+        }
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <img src="img/big.jpg" id="img">
+        <span></span>
+    </div>
+    <script type="text/javascript">
+        window.onload = function (){
+            //获得样式的函数
+            function css(ele,pro){
+                if (ele.currentStyle) {
+                    return ele.currentStyle[pro];
+                }else{
+                    return getComputedStyle(ele,false)[pro];
+                }
+            }
+            var img = document.getElementById("img");
+            var demo = document.getElementById("demo");
+            // 点击控制器
+            var isClick = false;
+            demo.onclick = function (){
+                if (isClick) {
+                    changeStyle(img,{"width":360,"height":360,"left":0,"top":0});
+                }else{
+                    changeStyle(img,{"width":500,"height":500,"left":-70,"top":-70});
+                }
+                isClick = !isClick;
+            }
+            // 改变样式的动画
+            function changeStyle(ele,obj){
+                clearInterval(ele.timer);
+                // 判断动画
+                ele.timer = setInterval(function(){
+                    for (var key in obj) {
+                        //当前属性的值 注意要获得的有的是 xxpx 360px 需要取整
+                        // 这里注意一下，当一个属性完成目标 就把它 变成true 所以先边判断目标有没有完成
+                        if (obj[key]!=true) {
+                            var now = parseInt(css(ele,key));
+                            // 速度 = 目标 - 当前
+                            var speed = (obj[key] - now)/5;
+                            // 因为取整了 所以终有一刻 是和目标相等的
+                            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                            ele.style[key] = now + speed +"px";
+                            if (now == obj[key] ) {
+                                obj[key] = true;
+                            }
+                        }
+                    }
+                    // 判断目标是否全部完成
+                    if (isM(obj)) {
+                        clearInterval(ele.timer);
+                    }
+                },30)
+            }
+            // 有任何一个不为true 就返回false
+            function isM(obj){
+                var ism = true;
+                for(var key in obj){
+                    if (obj[key]!=true) {
+                        ism = false;
+                    }
+                }
+                return ism;
+            }
+        }
+    </script>
+</body>
+</html>

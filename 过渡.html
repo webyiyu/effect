@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>动画</title>
+<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+   
+  <style>
+        .box{
+            height:500px;
+            background-color:black;  
+             overflow: hidden;                       
+        }
+
+
+        .mybox-leave-active,.mybox-enter-active{
+            transition:  all 1s ease; 
+        }
+        .mybox-leave-active,.mybox-enter{
+            height:0px !important;
+        }
+        .mybox-leave,.mybox-enter-active{
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 首先将要过渡的元素用transition包裹，并设置过渡的name） -->
+
+  <div id="box">
+    <transition name="mybox">
+        <div class="box"  v-show="boxshow"></div>
+    </transition>
+    <button @click="togglebox">按钮</button>
+</div>
+
+
+   
+  <script>
+     new Vue({
+        el:'#box',
+        data:{
+            boxshow:false
+        },
+        methods:{
+           
+            togglebox:function(){
+                this.boxshow = !this.boxshow;
+            }
+        }      
+    });
+      
+     
+  </script>
+</body>
+</html>

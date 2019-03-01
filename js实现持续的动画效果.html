@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js实现持续的动画效果</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#effect,#requestEffect{
+				width: 100px;
+				height: 100px;
+				background: beige;
+				margin: 100px auto;
+			}
+			#requestEffect{
+				background: aqua;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="effect"></div>
+		<div id="requestEffect"></div>
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			var effect = document.getElementById('effect');
+			//定时器的实现方式
+			var flag = true;
+			var width = 0;
+			setInterval(()=>{
+				width == 0?flag=true:width==100?flag=false:''
+				flag?
+				effect.style.width=`${width++}px`:
+				effect.style.width=`${width--}px`
+			},1000/60)
+			//requestAnimationFrame实现
+			//兼容性处理
+			var effectRequest = document.getElementById('requestEffect');
+			window.requestAnimationFrame = (function(){
+				return  window.requestAnimationFrame||
+						window.webkitRequestAnimationFrame||
+						window.mozRequestAnimationFrame  ||
+						function(callback){
+							window.setTimeout(callback,1000/60)
+						}
+			})();
+			function render(){
+				width==0?flag=true:width==100?flag=false:'';
+				flag?
+				effectRequest.style.width=`${width++}px`:
+				effectRequest.style.width=`${width--}px`
+			}
+			(function animloop(){
+				render();
+				requestAnimationFrame(animloop);
+			})()
+		}
+	</script>
+</html>

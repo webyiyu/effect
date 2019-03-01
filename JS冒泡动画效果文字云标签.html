@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JS冒泡动画效果文字云标签</title>
+		<style>
+			h1{
+				text-align: center;
+				margin: 20px auto 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>云标签</h1>
+		<div id="div1">
+			<a href="#" >知识决定一切</a>
+			<a href="#" >好好学习</a>
+			<a href="#" >寻龙诀</a>
+			<a href="#" >JavaScript</a>
+			<a href="#" >LEO</a>
+			<a href="#" >加油</a>
+			<a href="#" >web前端</a>
+			<a href="#" >web前端工程师</a>
+			<a href="#" >css3</a>
+			<a href="#" >曹操</a>
+			<a href="#" >警觉女王</a>
+			<a href="#" >磁场</a>
+			<a href="#" >好好</a>
+			<a href="#" >我都怕的</a>
+			<a href="#" >html5</a>
+			<a href="#" >web前端开发</a>
+			<a href="#" >jQuery</a>
+			<a href="#" >知识决定一切</a>
+			<a href="#" >好好学习</a>
+			<a href="#" >寻龙诀</a>
+			<a href="#" >JavaScript</a>
+			<a href="#" >LEO</a>
+			<a href="#" >加油</a>
+			<a href="#" >web前端</a>
+			<a href="#" >web前端工程师</a>
+			<a href="#" >css3</a>
+			<a href="#" >曹操</a>
+			<a href="#" >警觉女王</a>
+			<a href="#" >磁场</a>
+			<a href="#" >好好</a>
+			<a href="#" >我都怕的</a>
+			<a href="#" >html5</a>
+			<a href="#" >web前端开发</a>
+			<a href="#" >jQuery</a>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function deepClone(obj){
+			function isObject(obj){
+				return (typeof obj === 'object' || typeof obj === 'function')&& obj!== null
+			}
+			if(!isObject(obj)){
+				throw new Error('不是一个对象')
+			}
+			let isArray = Array.isArray(obj);
+			let newObj = isArray ? [...obj] : { ...obj }
+			Reflect.ownKeys(newObj).forEach(key =>{
+				newObj[key] = isObject(obj[key])? deepClone(obj[key]): obj[key];
+			})
+			return newObj
+		}
+		const obj = {
+			a:[1,2],
+			b:{
+				c:1,
+				d:{
+					e:[4,5,6]
+				}
+			}
+		}
+		const newObj = deepClone(obj);
+		console.log(obj)
+		newObj.b.d.e =[9,0];
+		console.log(newObj)
+	</script>
+</html>

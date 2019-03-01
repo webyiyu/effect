@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>css3实现持续的动画效果</title>
+		<style type="text/css">
+			*,html{
+				margin: 0;
+				padding: 0;
+			}
+			.effect{
+				animation: mymove 5s infinite;
+				width: 100px;
+				height: 100px;
+				background: #0099FF;
+				margin: 100px auto;
+			}
+			@keyframes mymove{
+				0%{
+					width: 100px;
+				}
+				50%{
+					width: 10px;
+				}
+				100%{
+					width: 100px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="effect">
+			
+		</div>
+	</body>
+</html>
