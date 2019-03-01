@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>简易版的双向数据绑定</title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" id="text" />
+			<p id="show-text"></p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+			var obj={};
+			Object.defineProperty(obj,'text',{
+				get:function(){
+					return obj
+				},
+				set:function(newValue){
+					document.getElementById('text').value = newValue;
+					document.getElementById('show-text').innerHTML = newValue;
+				}
+			})
+			document.addEventListener('keyup',function(e){
+				obj.text = e.target.value
+			})
+		}
+	</script>
+</html>

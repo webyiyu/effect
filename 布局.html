@@ -89,5 +89,22 @@
 			<div class="position-left"></div>
 			<div class="position-right"></div>
 		</div>
+		<ul id="ul">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
 	</body>
+	<script type="text/javascript">
+	window.onload=function(){
+		var ulNode = document.getElementById('ul');
+		ulNode.addEventListener('click',function(e){
+			e.preventDefault();
+			if(e.target && e.target.nodeName.toLowerCase('LI')){
+				alert(e.target.innerHTML)
+			}
+		},false)
+	}
+		
+	</script>
 </html>
