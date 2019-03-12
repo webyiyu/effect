@@ -3,16 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>动画</title>
-<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
-   
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+
   <style>
         .box{
             height:500px;
             background-color:black;  
-             overflow: hidden;                       
+            overflow: hidden;                       
         }
-
-
         .mybox-leave-active,.mybox-enter-active{
             transition:  all 1s ease; 
         }
@@ -34,10 +32,8 @@
     </transition>
     <button @click="togglebox">按钮</button>
 </div>
-
-
    
-  <script>
+<script>
      new Vue({
         el:'#box',
         data:{
@@ -52,6 +48,6 @@
     });
       
      
-  </script>
+</script>
 </body>
 </html>
